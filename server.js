@@ -1,10 +1,10 @@
-
+require('module-alias/register');
 
 const cluster = require('cluster');
 const path = require('path');
-const { myRequire } = require('./libs/common');
-const server = require('./libs/server');
-let config = require('./config');
+const { myRequire } = require('@/libs/common');
+const server = require('@/libs/server');
+let config = require('@/config');
 
 
 setInterval(() => {
