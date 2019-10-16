@@ -1,7 +1,8 @@
+const http = require('http');
 const Koa = require('koa');
 const { databases } = require('@/config');
 const mysql = require('promise-mysql');
-const __db = require('@/mods/__databases');
+let __db = require('@/mods/__databases');
 
 module.exports = async function ({ port, entry }) {
   const app = new Koa();
@@ -17,7 +18,16 @@ module.exports = async function ({ port, entry }) {
 
   app.use(require(entry));
 
+  /*
   app.listen(port, () => {
     console.log('服务开始工作:', port);
   });
+  */
+  const httpServer = http.createServer(app.callback());
+
+  httpServer.listen(port, () => {
+    console.log('服务开始工作:', port);
+  });
+
+  return httpServer;
 };
