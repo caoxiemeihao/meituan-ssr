@@ -14,7 +14,7 @@ function creageWorker(app) {
   const worker = cluster.fork();
 
   worker.on('exit', code => {
-    console.log(`[${app.name}]子进程退出`, code);
+    console.log(`子进程退出`, app.name, `code@${code}`);
 
     if (code) {
       // 重启子进程
@@ -24,7 +24,7 @@ function creageWorker(app) {
     }
   });
 
-  console.log('新的子进程:', app.name, 'version',app.version);
+  console.log('新的子进程:', app.name, `version@${app.version}`);
 
   worker.send(app);
 

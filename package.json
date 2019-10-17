@@ -5,10 +5,12 @@
   "author": "草鞋没号 <308487730@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.7.1",
     "koa": "^2.8.2",
     "koa-router": "^7.4.0",
     "module-alias": "^2.2.2",
-    "promise-mysql": "^4.1.1"
+    "promise-mysql": "^4.1.1",
+    "redis": "^2.8.0"
   },
   "_moduleAliases": {
     "@/config": "./config",

@@ -23,11 +23,21 @@ module.exports = {
 
   databases: {
     web: {
+      name: 'web',
       hose: 'localhost',
       port: 3306,
       user: 'root',
-      password: '12345678',
+      password: '123456',
       database: 'meituan',
     },
+  },
+
+  redis: {
+    main: {
+      name: 'main',
+      host: 'localhost',
+      prot: 6379,
+      password: undefined, // 空密码就是 undefined
+    }
   },
 };
