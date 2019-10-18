@@ -11,9 +11,13 @@ module.exports = async function ({ port, entry, name }) {
   // 创建 redis 连接
   await require('@libs/serverInc/redis')();
 
+  // 创建 session
+  await require('@libs/serverInc/session')(app);
+
   // 引用入口文件
   app.use(require(entry));
 
+  // 原生 httpServer 支持 httpServer.close 以支持新老服务热更新
   const httpServer = http.createServer(app.callback());
 
   httpServer.listen(port, () => {
