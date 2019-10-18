@@ -2,9 +2,9 @@ require('module-alias/register');
 
 const cluster = require('cluster');
 const path = require('path');
-const { require_non_cache } = require('@/libs/common');
-const server = require('@/libs/server');
-let config = require('@/config');
+const { require_non_cache } = require('@libs/common');
+const server = require('@libs/server');
+let config = require('@config');
 
 
 /** 创建子进程 */
@@ -20,7 +20,7 @@ function creageWorker(app) {
       // 重启子进程
       setTimeout(() => {
         creageWorker(app);
-      });
+      }, 1000 * 60);
     }
   });
 

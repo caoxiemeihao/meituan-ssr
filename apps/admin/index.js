@@ -1,6 +1,6 @@
 const Router = require('koa-router');
-const User = require('@/models/user');
-const redis = require('@/mods/__redis');
+const User = require('@models/user');
+const redis = require('@mods/__redis');
 
 const router = new Router();
 
