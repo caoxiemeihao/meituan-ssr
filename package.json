@@ -18,6 +18,7 @@
     "@models": "./models",
     "@mods": "./mods",
     "@libs": "./libs",
-    "@logs": "./logs"
+    "@logs": "./logs",
+    "@": "."
   }
 }
