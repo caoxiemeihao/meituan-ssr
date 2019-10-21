@@ -1,13 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const session = require('koa-session');
-const { main } = require('@mods/__redis');
+const redis = require('@mods/__redis');
 
 module.exports = async function(app) {
   app.keys = fs.readFileSync(path.join(__dirname, '../../\.keys'), 'utf8')
     .split(/\r\n|\n/).filter(_ => _);
-
-  console.log(app.keys);
 
   app.use(session({
     maxAge: (1000 * 60 * 60) * 2, // 2 小时 (PHP 默认 20 分钟)
@@ -17,13 +15,16 @@ module.exports = async function(app) {
     signed: true, // cookie 签名，防止修改
     store: {
       async get(key, maxAge) {
+        const str = await redis.main.getAsync(key);
+        const data = JSON.parse(str);
 
+        return data;
       },
       async set(key, session, maxAge) {
-
+        await redis.main.psetexAsync(key, maxAge, JSON.stringify(session));
       },
       async destroy(key) {
-
+        await redis.main.delAsync(key);
       },
     },
   }, app));
