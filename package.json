@@ -11,7 +11,7 @@
     "koa-session": "^5.12.3",
     "module-alias": "^2.2.2",
     "promise-mysql": "^4.1.1",
-    "redis": "^2.8.0"
+    "redis": "^3.1.1"
   },
   "_moduleAliases": {
     "@config": "./config",
